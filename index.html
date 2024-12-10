@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coming Soon</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: "Arial", sans-serif;
+        background: linear-gradient(135deg, #ad0008 0%, gray 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+      }
+
+      .container {
+        max-width: 600px;
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+      }
+
+      .logo-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+      }
+
+      .logo-placeholder {
+        width: 150px;
+        height: 150px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 2px dashed rgba(255, 255, 255, 0.5);
+      }
+
+      .logo-placeholder span {
+        color: rgba(255, 255, 255, 0.7);
+        font-weight: bold;
+      }
+
+      h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        animation: fadeIn 2s ease-in-out;
+      }
+
+      .countdown {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+      }
+
+      .countdown-item {
+        margin: 0 15px;
+        text-align: center;
+      }
+
+      .countdown-number {
+        font-size: 2rem;
+        font-weight: bold;
+      }
+
+      .countdown-label {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          width: 90%;
+          padding: 20px;
+        }
+
+        .logo-placeholder {
+          width: 100px;
+          height: 100px;
+        }
+
+        h1 {
+          font-size: 2rem;
+        }
+
+        .countdown {
+          flex-wrap: wrap;
+        }
+
+        .countdown-item {
+          margin: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="logo-container">
+        <div class="logo-placeholder">
+          <img src="./logo.png" alt="logo" width="400" height="150" srcset="" />
+        </div>
+      </div>
+
+      <h1>Website Coming Soon</h1>
+      <p>We're working hard to bring you something amazing. Stay tuned!</p>
+
+      <div class="countdown">
+        <div class="countdown-item">
+          <div id="days" class="countdown-number">00</div>
+          <div class="countdown-label">Days</div>
+        </div>
+        <div class="countdown-item">
+          <div id="hours" class="countdown-number">00</div>
+          <div class="countdown-label">Hours</div>
+        </div>
+        <div class="countdown-item">
+          <div id="minutes" class="countdown-number">00</div>
+          <div class="countdown-label">Minutes</div>
+        </div>
+        <div class="countdown-item">
+          <div id="seconds" class="countdown-number">00</div>
+          <div class="countdown-label">Seconds</div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Countdown Timer
+      function updateCountdown() {
+        const launchDate = new Date("2025-01-31T23:59:59");
+        const now = new Date();
+        const difference = launchDate - now;
+
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor(
+          (difference % (1000 * 60 * 60)) / (1000 * 60)
+        );
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        document.getElementById("days").textContent = days
+          .toString()
+          .padStart(2, "0");
+        document.getElementById("hours").textContent = hours
+          .toString()
+          .padStart(2, "0");
+        document.getElementById("minutes").textContent = minutes
+          .toString()
+          .padStart(2, "0");
+        document.getElementById("seconds").textContent = seconds
+          .toString()
+          .padStart(2, "0");
+      }
+
+      // Update countdown every second
+      setInterval(updateCountdown, 1000);
+
+      // Initial call to prevent delay
+      updateCountdown();
+    </script>
+  </body>
+</html>
